@@ -1,7 +1,6 @@
 class_name Boid extends KinematicBody
 
 
-
 # Declare the Harmonic node as a member variable
 var harmonic := Harmonic.new()
 
