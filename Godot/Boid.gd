@@ -1,5 +1,10 @@
 class_name Boid extends KinematicBody
 
+
+
+# Declare the Harmonic node as a member variable
+var harmonic := Harmonic.new()
+
 export var mass = 1
 export var force = Vector3.ZERO
 export var acceleration = Vector3.ZERO
@@ -160,6 +165,21 @@ func _process(var delta):
 			count_neighbors()
 			
 func _physics_process(var delta):
+	# movement using WASD
+	var move_speed = 10
+	var movement = Vector3()
+	if Input.is_action_just_pressed("move_forward"):
+		movement.z -= 1
+	if Input.is_action_just_pressed("move_back"):
+		movement.z += 1
+	if Input.is_action_just_pressed("strafe_left"):
+		movement.x -= 1
+	if Input.is_action_just_pressed("strafe_right"):
+		movement.x += 1
+		
+	movement = movement.normalized() * move_speed * delta
+	move_and_slide(movement,Vector3(0,1,0))
+	
 	# lerp in the new forces
 	if should_calculate:
 		new_force = calculate()
