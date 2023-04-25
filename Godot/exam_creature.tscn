@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://FollowPath.gd" type="Script" id=1]
 [ext_resource path="res://SpineAnimator.gd" type="Script" id=2]
@@ -32,6 +32,10 @@
 [sub_resource type="PrismMesh" id=8]
 
 [sub_resource type="BoxShape" id=10]
+
+[sub_resource type="SphereMesh" id=19]
+
+[sub_resource type="SphereShape" id=18]
 
 [sub_resource type="SphereShape" id=15]
 
@@ -157,7 +161,15 @@ shape = SubResource( 10 )
 disabled = true
 
 [node name="Dodecahedron" parent="creature" instance=ExtResource( 6 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 15.953 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="creature/Dodecahedron"]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0 )
+mesh = SubResource( 19 )
+
+[node name="CollisionShape" type="CollisionShape" parent="creature/Dodecahedron/MeshInstance"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+shape = SubResource( 18 )
 
 [node name="Player" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5051, 11.8629, 4.27246 )
